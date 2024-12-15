@@ -1,0 +1,72 @@
+﻿<Window x:Class="StationeryInventory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Stationery Inventory" Height="600" Width="900">
+    <Grid>
+        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
+            <!-- Вкладка для постачальників -->
+            <TabItem Header="Suppliers">
+                <Grid>
+                    <DataGrid x:Name="SuppliersGrid" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Supplier ID" Binding="{Binding SupplierId}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка для товарів -->
+            <TabItem Header="Products">
+                <Grid>
+                    <DataGrid x:Name="ProductsGrid" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Color" Binding="{Binding Color}" />
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                            <DataGridTextColumn Header="Price (per unit)" Binding="{Binding Price, StringFormat=C}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <!-- Вкладка для введення нової партії -->
+            <TabItem Header="Add New Supply">
+                <Grid Margin="10">
+                    <StackPanel>
+                        <TextBlock Text="Product ID:" />
+                        <TextBox x:Name="SupplyProductIdInput" Width="200" />
+
+                        <TextBlock Text="Supplier ID:" />
+                        <TextBox x:Name="SupplySupplierIdInput" Width="200" />
+
+                        <TextBlock Text="Quantity:" />
+                        <TextBox x:Name="SupplyQuantityInput" Width="200" />
+
+                        <Button Content="Add Supply" Width="150" Margin="0,10,0,0" Click="AddSupply_Click" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <!-- Вкладка для поставок -->
+            <TabItem Header="Supplies">
+                <Grid>
+                    <DataGrid x:Name="SuppliesGrid" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Supply ID" Binding="{Binding SupplyId}" />
+                            <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" />
+                            <DataGridTextColumn Header="Supplier ID" Binding="{Binding SupplierId}" />
+                            <DataGridTextColumn Header="Supply Date" Binding="{Binding SupplyDate}" />
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
+
+        <!-- Кнопка для обчислення вартості -->
+        <Button Content="Calculate Costs" HorizontalAlignment="Left" Margin="10,530,0,0"
+                VerticalAlignment="Top" Width="150" Click="CalculateCosts_Click" />
+    </Grid>
+</Window>
